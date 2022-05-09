@@ -12,12 +12,12 @@ Clinet_socket::~Clinet_socket()
 {
 }
 
-// CClientSocket ��� �Լ�
+// CClientSocket 멤버 함수
 void Clinet_socket::SetListenSocket(CAsyncSocket* pSocket)
 {
 	m_pListenSocket = pSocket;
 }
-// CClientSocket ��� �Լ�
+// CClientSocket 멤버 함수
 
 
 void Clinet_socket::OnClose(int nErrorCode)
@@ -46,16 +46,16 @@ void Clinet_socket::OnReceive(int nErrorCode)
 		strTmp = temp;
 
 		pMain->message_list.InsertString(-1, strTmp);
-		pMain->message_list.AddString(L"\n");  // �޽��� ����Ʈ(�޽���â?)�� �Է¹��� �޽��� ����
+		pMain->message_list.AddString(L"\n");  // 메시지 리스트(메시지창?)에 입력받은 메시지 띄우기
 		pMain->message_list.SetCurSel(pMain->message_list.GetCount() - 1);
 		//AfxMessageBox(strTmp);
 
 		//send(*m_pListenSocket, temp, sizeof(temp), 0);
 		Client_listen* pServerSocket = (Client_listen*)m_pListenSocket;
 		//TCHAR* szUniCode = (TCHAR*)(LPCTSTR)strTmp;
-		//pServerSocket->SendAllMessage(szUniCode); // �ٸ� Ŭ���̾�Ʈ�鿡�� �޽��� ����
+		//pServerSocket->SendAllMessage(szUniCode); // 다른 클라이언트들에게 메시지 전달
 
-		pServerSocket->SendAllMessage(temp); // �ٸ� Ŭ���̾�Ʈ�鿡�� �޽��� ����
+		pServerSocket->SendAllMessage(temp); // 다른 클라이언트들에게 메시지 전달
 
 	}		
 	
